@@ -1,0 +1,11 @@
+.chat-item__name {
+  font-weight: bold;
+}
+
+.chat-item__date {
+  color: gray;
+}
+
+.chat-item__text {
+  margin: 8px 0;
+}
