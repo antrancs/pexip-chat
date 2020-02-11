@@ -5,6 +5,7 @@ import './App.css';
 import JoinPage from '../JoinPage/JoinPage';
 import ChatPage from '../ChatPage/ChatPage';
 import WebSocketClientContext from '../../context/WebSocketClientContext';
+import AppContext from '../../context/AppContext';
 
 const client = new W3CWebSocket('ws://127.0.0.1:8080');
 
@@ -33,19 +34,21 @@ const App = () => {
   }
 
   return (
-    <WebSocketClientContext.Provider value={client}>
-      <div className="App">
-        <header></header>
+    <AppContext.Provider value={{ userName }}>
+      <WebSocketClientContext.Provider value={client}>
+        <div className="App">
+          <header></header>
 
-        <main>
-          {hasJoined ? (
-            <ChatPage userName={userName} />
-          ) : (
-            <JoinPage onSubmit={handleLogin} />
-          )}
-        </main>
-      </div>
-    </WebSocketClientContext.Provider>
+          <main>
+            {hasJoined ? (
+              <ChatPage userName={userName} />
+            ) : (
+              <JoinPage onSubmit={handleLogin} />
+            )}
+          </main>
+        </div>
+      </WebSocketClientContext.Provider>
+    </AppContext.Provider>
   );
 };
 

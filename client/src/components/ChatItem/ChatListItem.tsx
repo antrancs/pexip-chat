@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
 import './ChatItem.css';
-import { ChatItem } from '../ChatPage/ChatPage';
+import { ChatItem } from '../ChatTab/ChatTab';
 
 interface IProps {
   item: ChatItem;
