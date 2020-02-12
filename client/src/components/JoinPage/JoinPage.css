@@ -1,17 +1,18 @@
 .join-page--form {
   width: 300px;
-  background-color: gray;
+  background-color: #ebebeb;
 
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 
 .join-page--form > input {
   display: block;
   width: 80%;
+  padding: 8px;
 }
 
 .join-page--join-btn {
@@ -19,7 +20,7 @@
   color: white;
   padding: 8px 16px;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 18px;
   outline: none;
   appearance: none;
   border: none;

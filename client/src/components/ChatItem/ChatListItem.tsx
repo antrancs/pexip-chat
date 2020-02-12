@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
 import './ChatItem.css';
-import { ChatItem } from '../ChatTab/ChatTab';
+import { ChatItem } from '../ChatPage/ChatPage';
 
 interface IProps {
   item: ChatItem;
@@ -11,7 +11,17 @@ const ChatListItem: FunctionComponent<IProps> = ({ item }) => {
   const { date, user, text } = item;
 
   const dateObj = new Date(date);
-  const formattedDate = `${dateObj.getHours()}:${dateObj.getMinutes()}`;
+
+  function formatDate(date: Date) {
+    const hours = dateObj.getHours();
+    const minutes = dateObj.getMinutes();
+
+    return `${hours <= 9 ? '0' + hours : hours}:${
+      minutes <= 9 ? '0' + minutes : minutes
+    }`;
+  }
+
+  const formattedDate = formatDate(dateObj);
   return (
     <div>
       <div>

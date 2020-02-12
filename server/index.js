@@ -17,7 +17,7 @@ wsServer.on('connection', webSocket => {
           client.send(
             JSON.stringify({
               ...dataObj,
-              users
+              users: Object.keys(users)
             })
           );
         } else {

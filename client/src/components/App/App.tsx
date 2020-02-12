@@ -37,7 +37,7 @@ const App = () => {
     <AppContext.Provider value={{ userName }}>
       <WebSocketClientContext.Provider value={client}>
         <div className="App">
-          <header></header>
+          <header className="App-header">Status Meeting Standup</header>
 
           <main>
             {hasJoined ? (
