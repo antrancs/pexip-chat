@@ -22,7 +22,8 @@ const ChatTab: FunctionComponent<IProps> = ({ chatItems }) => {
         payload: {
           user: userName,
           text,
-          date: Date.now()
+          date: Date.now(),
+          id: `U${Date.now()}`
         },
         type: 'NEW_MESSAGE'
       })
@@ -31,11 +32,39 @@ const ChatTab: FunctionComponent<IProps> = ({ chatItems }) => {
     setText('');
   }
 
+  function handleUpdate(messageId: string, newText: string) {
+    wsClient.send(
+      JSON.stringify({
+        payload: {
+          messageId,
+          newText
+        },
+        type: 'UPDATE_MESSAGE'
+      })
+    );
+  }
+
+  function handleDelete(messageId: string) {
+    wsClient.send(
+      JSON.stringify({
+        payload: {
+          messageId
+        },
+        type: 'DELETE_MESSAGE'
+      })
+    );
+  }
+
   return (
     <div className="chat-tab__container">
       <div className="chat-tab-messages">
         {chatItems.map(item => (
-          <ChatListItem key={item.user} item={item} />
+          <ChatListItem
+            key={item.user}
+            item={item}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
         ))}
       </div>
 

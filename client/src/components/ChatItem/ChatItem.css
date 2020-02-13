@@ -9,3 +9,29 @@
 .chat-item__text {
   margin: 8px 0;
 }
+
+.chat-item__message-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-item__message-control {
+  display: flex;
+  margin-left: 8px;
+}
+
+.chat-item__edited-label {
+  font-size: 12px;
+  font-style: italic;
+  margin-right: 4px;
+}
+
+.chat-item__delete-message {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.chat-item__wrapper {
+  position: relative;
+}

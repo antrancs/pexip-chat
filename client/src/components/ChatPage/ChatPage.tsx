@@ -18,6 +18,9 @@ export interface ChatItem {
   user: string;
   date: number;
   text: string;
+  id: string;
+  edited: boolean;
+  deleted: boolean;
 }
 
 const ChatPage: FunctionComponent<IProps> = ({ userName }) => {
@@ -43,11 +46,40 @@ const ChatPage: FunctionComponent<IProps> = ({ userName }) => {
           {
             date: data.payload.date,
             user: 'Meetingbot',
-            text: `${data.payload.userName} has joined the chat`
+            text: `${data.payload.userName} has joined the chat`,
+            id: `U${Date.now()}`,
+            edited: false,
+            deleted: false
           }
         ]);
 
         setUsers(data.users);
+      } else if (data.type === 'UPDATE_MESSAGE') {
+        setChatItems(messages =>
+          messages.map(message => {
+            if (message.id === data.payload.messageId) {
+              return {
+                ...message,
+                text: data.payload.newText,
+                edited: true
+              };
+            }
+            return message;
+          })
+        );
+      } else if (data.type === 'DELETE_MESSAGE') {
+        setChatItems(messages =>
+          messages.map(message => {
+            if (message.id === data.payload.messageId) {
+              return {
+                ...message,
+                text: 'The message has been deleted',
+                deleted: true
+              };
+            }
+            return message;
+          })
+        );
       }
     };
   }, [wsClient]);
