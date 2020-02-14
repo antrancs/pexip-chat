@@ -6,7 +6,10 @@
   "scripts": {
     "client": "cd client && npm start",
     "server": "cd server && npm start",
-    "start": "run-p client server"
+    "install-client": "cd client && npm install",
+    "install-server": "cd server && npm install",
+    "install": "run-p install-client install-server",
+    "start": "run-p server client"
   },
   "author": "An Tran",
   "license": "ISC",
